@@ -841,3 +841,32 @@ div[data-groupname="repeating_abilities"] > div.repitem,
 div[data-groupname="repeating_systems"] > div.repitem {
     padding-left: 20px;
 }
+
+/* Union Crawler Sheet Styling */
+
+.sheet-crawler-checkbox {
+    display: flex;
+    width: 220px;
+    align-items: baseline;
+}
+
+.sheet-crawler-checkbox > .crawler-checkbox-input,
+.sheet-crawler-checkbox > .crawler-checkbox-label {
+    width: fit-content;
+    padding-right: 8px;
+}
+
+.sheet-crawler {
+    display: none;
+}
+
+.charsheet .crawler-sheet-toggle[value="on"] ~ div.sheet-crawler {
+    display: flex;
+}
+
+.charsheet .crawler-sheet-toggle[value="on"] ~ div.sheet-pilot,
+.charsheet .crawler-sheet-toggle[value="on"] ~ div.sheet-mech,
+.charsheet .crawler-sheet-toggle[value="on"] ~ div.sheet-cargo,
+.charsheet .crawler-sheet-toggle[value="on"] ~ div.sheet-tabs-wrapper {
+    display: none;
+}

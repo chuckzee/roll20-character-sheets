@@ -6,10 +6,12 @@
 <input type="hidden" name="attr_ap_max" value="5" />
 <input type="hidden" name="attr_tp" value="0" />
 <input type="hidden" name="collapsedFields" value="" />
-
-<!-- Table for roll results -->
 <input type="hidden" name="attr_Core-Mechanic" value="" />
-
+<input type="hidden" class="crawler-sheet-toggle" name="attr_is_crawler_sheet"/>
+<div class="sheet-crawler-checkbox">
+    <input type="checkbox" id="is_crawler_sheet" class="crawler-checkbox-input" name="attr_is_crawler_sheet"/>
+    <label class="crawler-checkbox-label" for="is_crawler_sheet">Is Crawler?</label>
+</div>
 <div class="roller-buttons-wrapper">
     <button type="action" name="act_core_mechanic">Core Mechanic Roll</button>
     <button type="action" name="act_group_initiative">Group Initiative Roll</button>
@@ -382,6 +384,86 @@
         </fieldset>
     </div>
 </div>
+
+<div class="sheet-crawler sheet-stats">
+    <!-- Health Points (HP) -->
+    <div class="sheet-crawler-sp">
+        <span>
+            <label data-label-tooltip="" for="crawler_sp">SP</label>
+            <input type="number" name="attr_crawler_sp" id="crawler_sp" value="" />
+        </span>
+        /
+        <span>
+            <label data-label-tooltip="" for="crawler_sp_max">Max:</label>
+            <input type="number" name="attr_crawler_sp_max" id="crawler_sp_max" value="" />
+        </span>
+    </div>
+
+    <!-- Training Points (TP) -->
+    <div class="sheet-crawler-tech-lvl">
+        <span>
+            <label data-label-tooltip="The current tech level of your union crawler." for="crawler_tech_lvl">Tech LVL:</label>
+            <input type="number" name="attr_crawler_tech_lvl" id="crawler_tech_lvl" value="0" />
+        </span>
+    </div>
+    <div class="sheet-tp">
+        <span>
+            <label data-label-tooltip="" for="crawler_upkeep">Upkeep:</label>
+            <input type="number" name="attr_crawler_upkeep" id="crawler_upkeep" value="" />
+        </span>
+    </div>
+    <div class="sheet-tp">
+        <span>
+            <label data-label-tooltip="" for="crawler_upgrade">TP:</label>
+            <input type="number" name="attr_crawler_upgrade" id="crawler_upgrade" value="" />
+        </span>
+    </div>
+</div>
+<div id="crawler_sheet" class="sheet-crawler">
+    <div class="sheet-column-left">
+        <h2>Union Crawler</h2>
+        <div class="sheet-crawler-info">
+            <div>
+                <label data-label-tooltip="The name of your Union Crawler." for="crawler_name">Name:</label>
+                <input type="text" name="attr_crawler_name" id="crawler_name" />
+            </div>
+            <div>
+                <label data-label-tooltip="Your Union Crawler's unique type. Pg. 216" for="crawler_type">Type:</label>
+                <input type="text" name="attr_crawler_type" id="crawler_type" />
+            </div>
+            <div>
+                <label data-label-tooltip="The ability of your Union Crawler." for="crawler_ability">Ability:</label>
+                <input type="text" name="attr_crawler_ability" id="crawler_ability" />
+            </div>
+            <div>
+                <label data-label-tooltip="The appearance of your Union Crawler." for="crawler_appearance">Appearance:</label>
+                <textarea name="attr_crawler_appearance" id="crawler_appearance"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="sheet-column-right">
+        <div class="sheet-crawler-info">
+            <div>
+                <label data-label-tooltip="The name of your Union Crawler." for="crawler_name">Name:</label>
+                <input type="text" name="attr_crawler_name" id="crawler_name" />
+            </div>
+            <div>
+                <label data-label-tooltip="Your Union Crawler's unique type. Pg. 216" for="crawler_type">Type:</label>
+                <input type="text" name="attr_crawler_type" id="crawler_type" />
+            </div>
+            <div>
+                <label data-label-tooltip="The ability of your Union Crawler." for="crawler_ability">Ability:</label>
+                <input type="text" name="attr_crawler_ability" id="crawler_ability" />
+            </div>
+            <div>
+                <label data-label-tooltip="The appearance of your Union Crawler." for="crawler_appearance">Appearance:</label>
+                <textarea name="attr_crawler_appearance" id="crawler_appearance"></textarea>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Roll Templates -->
 <rolltemplate class="sheet-rolltemplate-salvageunion">
     <div class="sheet-template-container">
         <h3>{{name}}</h3>
@@ -455,7 +537,8 @@
     </div>
 </rolltemplate>
 <script type="text/worker">
-    on("change:repeating_cargo:cargo_count", function(eventInfo) {
+    // Function to recalculate cargo total
+    function recalculateCargoTotal() {
         getSectionIDs("repeating_cargo", function(ids) {
             let totalCargoCount = 0;
             let fieldsToGet = ids.map(id => `repeating_cargo_${id}_cargo_count`);
@@ -473,7 +556,7 @@
                         let cargoTotal = parseInt(values.cargo_total, 10) || 0;
                         let mechCargoCap = parseInt(values.mech_cargo_cap, 10) || 0;
                         let cargoOverMax = (cargoTotal > mechCargoCap) ? 1 : 0;
-            
+    
                         setAttrs({
                             cargo_over: cargoOverMax
                         });
@@ -481,8 +564,14 @@
                 });
             });
         });
+    }
+    
+    // Listener for changes in cargo count
+    on("change:repeating_cargo:cargo_count", function(eventInfo) {
+        recalculateCargoTotal();
     });
     
+    // Listener for changes in mech cargo cap or total cargo
     on("change:mech_cargo_cap change:cargo_total", function() {
         getAttrs(["cargo_total", "mech_cargo_cap"], function(values) {
             let cargoTotal = parseInt(values.cargo_total, 10) || 0;
@@ -493,6 +582,11 @@
                 cargo_over: cargoOverMax
             });
         });
+    });
+    
+    // Listener for deletion of a cargo item
+    on("remove:repeating_cargo", function() {
+        recalculateCargoTotal();
     });
     
     const buttonlist = ["pilot", "mech", "cargo"];
