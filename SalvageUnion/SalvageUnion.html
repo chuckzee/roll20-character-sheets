@@ -414,10 +414,14 @@
     </div>
     <div class="sheet-tp">
         <span>
-            <label data-label-tooltip="" for="crawler_upgrade">TP:</label>
+            <label data-label-tooltip="" for="crawler_upgrade">Upgrade:</label>
             <input type="number" name="attr_crawler_upgrade" id="crawler_upgrade" value="" />
         </span>
     </div>
+</div>
+<div class="cargo-sheet-tabs-wrapper">
+    <button type="action" name="act_crawler">Crawler</button>
+    <button type="action" name="act_storage">Storage</button>
 </div>
 <div id="crawler_sheet" class="sheet-crawler">
     <div class="sheet-column-left">
@@ -442,23 +446,20 @@
         </div>
     </div>
     <div class="sheet-column-right">
-        <div class="sheet-crawler-info">
-            <div>
-                <label data-label-tooltip="The name of your Union Crawler." for="crawler_name">Name:</label>
-                <input type="text" name="attr_crawler_name" id="crawler_name" />
-            </div>
-            <div>
-                <label data-label-tooltip="Your Union Crawler's unique type. Pg. 216" for="crawler_type">Type:</label>
-                <input type="text" name="attr_crawler_type" id="crawler_type" />
-            </div>
-            <div>
-                <label data-label-tooltip="The ability of your Union Crawler." for="crawler_ability">Ability:</label>
-                <input type="text" name="attr_crawler_ability" id="crawler_ability" />
-            </div>
-            <div>
-                <label data-label-tooltip="The appearance of your Union Crawler." for="crawler_appearance">Appearance:</label>
-                <textarea name="attr_crawler_appearance" id="crawler_appearance"></textarea>
-            </div>
+        <div class="sheet-crawler-bays">
+            <h3>Crawler Bays</h3>
+            <fieldset class="repeating_bays">
+                <div class="crawler-bay-info">
+                    <label data-label-tooltip="The name of the Crawler Bay." for="crawler_bay_name">Name:</label>
+                    <input type="text" name="attr_crawler_bay_name" id="crawler_bay_name" />    
+                    <button class="show-crawler-bay-button" type="action" name="act_show-crawler-bay">&#x1F4AC;</button>
+                </div>
+                <div class="crawler-bay-description">
+                    <label data-label-tooltip="The appearance of your Union Crawler." for="crawler_appearance">Appearance:</label>
+                    <textarea name="attr_crawler_appearance" id="crawler_appearance">
+                    </textarea>
+                </div>
+            </fieldset>
         </div>
     </div>
 </div>

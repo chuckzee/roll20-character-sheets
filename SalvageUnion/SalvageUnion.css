@@ -166,6 +166,7 @@ input[value="cargo"] ~ div.sheet-stats {
     position: relative;
 }
 
+.sheet-crawler-sp, .sheet-crawler-tech-lvl,
 .sheet-hp, .sheet-ap, .sheet-tp, .sheet-heat, .sheet-sp, .sheet-ep {
     flex-direction: row;
     justify-content: space-between;
@@ -185,11 +186,14 @@ input[value="cargo"] ~ div.sheet-stats {
     margin-bottom: -6px;
 }
 
+.sheet-crawler-sp label, .sheet-crawler-tech-lvl label,
 .sheet-heat label, .sheet-sp label, .sheet-ep label,
 .sheet-hp label, .sheet-ap label, .sheet-tp label {
     color: white;
 }
 
+.sheet-crawler-sp label, .sheet-crawler-tech-lvl label,
+.sheet-crawler-sp input, .sheet-crawler-tech-lvl input,
 .sheet-heat label, .sheet-sp label, .sheet-ep label,
 .sheet-hp label, .sheet-ap label, .sheet-tp label,
 .sheet-heat input, .sheet-sp input, .sheet-ep input,
@@ -869,4 +873,32 @@ div[data-groupname="repeating_systems"] > div.repitem {
 .charsheet .crawler-sheet-toggle[value="on"] ~ div.sheet-cargo,
 .charsheet .crawler-sheet-toggle[value="on"] ~ div.sheet-tabs-wrapper {
     display: none;
+}
+
+.sheet-crawler-bays > div.repcontainer{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.sheet-crawler-bays > div.repcontainer > div.repitem {
+  flex: 1 1 calc(50% - 20px);
+  margin: 10px;
+}
+
+.sheet-crawler-bays > div.repcontainer > div.repitem .crawler-bay-info {
+    display: flex;
+    align-content: baseline;
+}
+
+.crawler-bay-info label,
+.crawler-bay-info input,
+.crawler-bay-info button {
+    display: inline-block;
+    flex: none;
+    width: fit-content;
+}
+
+.crawler-bay-info input,
+.crawler-bay-info button {
+    display: inline;
 }
