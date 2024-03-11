@@ -37,6 +37,26 @@ h3 {
     -webkit-text-stroke-color: #74C9E4;
 }
 
+/* Sheet Type Select Controls */
+
+.pilot-mech-sheet-wrapper,
+.crawler-sheet-wrapper,
+.denizen-sheet-wrapper {
+    display: none;
+}
+
+.character-sheet-type-toggle[value="pilot"] ~ .pilot-mech-sheet-wrapper {
+    display: block;
+}
+
+.character-sheet-type-toggle[value="crawler"] ~ .crawler-sheet-wrapper {
+    display: block;
+}
+
+.character-sheet-type-toggle[value="denizen"] ~ .denizen-sheet-wrapper {
+    display: block;
+}
+
 /* All sheet styles */
 
 .charactersheet input, .charactersheet textarea, .charactersheet select {
@@ -854,10 +874,8 @@ div[data-groupname="repeating_systems"] > div.repitem {
 
 /* Union Crawler Sheet Styling */
 
-.sheet-crawler-checkbox {
+.sheet-crawler {
     display: flex;
-    width: 220px;
-    align-items: baseline;
 }
 
 .sheet-crawler-checkbox > .crawler-checkbox-input,
@@ -866,19 +884,8 @@ div[data-groupname="repeating_systems"] > div.repitem {
     padding-right: 8px;
 }
 
-.sheet-crawler {
-    display: none;
-}
-
-.charsheet .crawler-sheet-toggle[value="on"] ~ div.sheet-crawler {
-    display: flex;
-}
-
-.charsheet .crawler-sheet-toggle[value="on"] ~ div.sheet-pilot,
-.charsheet .crawler-sheet-toggle[value="on"] ~ div.sheet-mech,
-.charsheet .crawler-sheet-toggle[value="on"] ~ div.sheet-cargo,
-.charsheet .crawler-sheet-toggle[value="on"] ~ div.sheet-tabs-wrapper {
-    display: none;
+.sheet-crawler.sheet-stats {
+    background-color: #CE5898;
 }
 
 .sheet-crawler-bays > div.repcontainer{
