@@ -384,17 +384,20 @@
         </fieldset>
     </div>
 </div>
-
+<div class="cargo-sheet-tabs-wrapper">
+    <button type="action" name="act_crawler">Crawler</button>
+    <button type="action" name="act_storage">Storage</button>
+</div>
 <div class="sheet-crawler sheet-stats">
     <!-- Health Points (HP) -->
     <div class="sheet-crawler-sp">
         <span>
-            <label data-label-tooltip="" for="crawler_sp">SP</label>
+            <label data-label-tooltip="Crawler structure points, representing the overall wellbeing of the structure." for="crawler_sp">SP</label>
             <input type="number" name="attr_crawler_sp" id="crawler_sp" value="" />
         </span>
-        /
+         / 
         <span>
-            <label data-label-tooltip="" for="crawler_sp_max">Max:</label>
+            <label data-label-tooltip="The maxium value of structure points your Crawler can be. Improves on Upgrade." for="crawler_sp_max">Max:</label>
             <input type="number" name="attr_crawler_sp_max" id="crawler_sp_max" value="" />
         </span>
     </div>
@@ -403,29 +406,76 @@
     <div class="sheet-crawler-tech-lvl">
         <span>
             <label data-label-tooltip="The current tech level of your union crawler." for="crawler_tech_lvl">Tech LVL:</label>
-            <input type="number" name="attr_crawler_tech_lvl" id="crawler_tech_lvl" value="0" />
+            <select name="attr_crawler_tech_lvl" id="crawler_tech_lvl">
+                <option value="Hamlet">1</option>
+                <option value="Village">2</option>
+                <option value="Town">3</option>
+                <option value="City">4</option>
+                <option value="Metropolis">5</option>
+                <option value="Megacity">6</option>
+            </select>
         </span>
     </div>
-    <div class="sheet-tp">
+    <div class="sheet-crawler-upkeep">
         <span>
-            <label data-label-tooltip="" for="crawler_upkeep">Upkeep:</label>
+            <label data-label-tooltip="Crawlers require a constant influx of Scrap to maintain. This must be paid once per week, resolved during downtime." for="crawler_upkeep">Upkeep:</label>
             <input type="number" name="attr_crawler_upkeep" id="crawler_upkeep" value="" />
         </span>
     </div>
-    <div class="sheet-tp">
+    <div class="sheet-crawler-upgrade">
         <span>
-            <label data-label-tooltip="" for="crawler_upgrade">Upgrade:</label>
+            <label data-label-tooltip="If the upkeep on the crawler is paid in full, the amount spent goes toward the upgrade pool." for="crawler_upgrade">Upgrade:</label>
             <input type="number" name="attr_crawler_upgrade" id="crawler_upgrade" value="" />
         </span>
     </div>
 </div>
-<div class="cargo-sheet-tabs-wrapper">
-    <button type="action" name="act_crawler">Crawler</button>
-    <button type="action" name="act_storage">Storage</button>
-</div>
 <div id="crawler_sheet" class="sheet-crawler">
     <div class="sheet-column-left">
-        <h2>Union Crawler</h2>
+        <div class="crawler-tech-level-info">
+            <input class="show-crawler-level-info" type="hidden" name="attr_crawler_tech_lvl" id="crawler_tech_lvl"/>
+            <div class="crawler-tech-level-hamlet">
+                <h2>Tech 1 - Hamlet Crawler</h2>
+                <span>Structure Points: 20</span>
+                <span>Upkeep: 5x Tech 1 Scrap</span>
+                <span>Upgrade: 30x Tech 1 Scrap</span>
+                <span>Approximate Population: 100 - 500</span>
+            </div>
+            <div class="crawler-tech-level-village">
+                <h2>Tech 2 - Village Crawler</h2>
+                <span>Structure Points: 25</span>
+                <span>Upkeep: 5x Tech 2 Scrap</span>
+                <span>Upgrade: 30x Tech 2 Scrap</span>
+                <span>Approximate Population: 500 - 2000</span>
+            </div>
+            <div class="crawler-tech-level-town">
+                <h2>Tech 3 - Town Crawler</h2>
+                <span>Structure Points: 30</span>
+                <span>Upkeep: 5x Tech 3 Scrap</span>
+                <span>Upgrade: 30x Tech 3 Scrap</span>
+                <span>Approximate Population: 2,000 - 5,000</span>
+            </div>
+            <div class="crawler-tech-level-city">
+                <h2>Tech 4 - City Crawler</h2>
+                <span>Structure Points: 35</span>
+                <span>Upkeep: 5x Tech 4 Scrap</span>
+                <span>Upgrade: 30x Tech 4 Scrap</span>
+                <span>Approximate Population: 5,000 - 15,000</span>
+            </div>
+            <div class="crawler-tech-level-metropolis">
+                <h2>Tech 5 - Metropolis Crawler</h2>
+                <span>Structure Points: 40</span>
+                <span>Upkeep: 5x Tech 5 Scrap</span>
+                <span>Upgrade: 30x Tech 5 Scrap</span>
+                <span>Approximate Population: 15,000 - 25,000</span>
+            </div>
+            <div class="crawler-tech-level-megacity">
+                <h2>Tech 6 - Megacity Crawler</h2>
+                <span>Structure Points: 50</span>
+                <span>Upkeep: 5x Tech 6 Scrap</span>
+                <span>Upgrade: Tech 6 is the highest level of Union Crawler and it cannot be upgraded further.</span>
+                <span>Approximate Population: 25,000+</span>
+            </div>
+        </div>
         <div class="sheet-crawler-info">
             <div>
                 <label data-label-tooltip="The name of your Union Crawler." for="crawler_name">Name:</label>

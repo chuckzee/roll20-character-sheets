@@ -89,10 +89,12 @@ h3 {
     display: flex;
 }
 
+.cargo-sheet-tabs-wrapper,
 .sheet-tabs-wrapper {
     display: flex;
 }
 
+.cargo-sheet-tabs-wrapper button,
 .sheet-tabs-wrapper button {    
     font-size: 20px;
     -webkit-text-stroke-width: 2px;
@@ -166,6 +168,7 @@ input[value="cargo"] ~ div.sheet-stats {
     position: relative;
 }
 
+.sheet-crawler-upkeep, .sheet-crawler-upgrade,
 .sheet-crawler-sp, .sheet-crawler-tech-lvl,
 .sheet-hp, .sheet-ap, .sheet-tp, .sheet-heat, .sheet-sp, .sheet-ep {
     flex-direction: row;
@@ -186,12 +189,15 @@ input[value="cargo"] ~ div.sheet-stats {
     margin-bottom: -6px;
 }
 
+.sheet-crawler-upgrade label, .sheet-crawler-upkeep label,
 .sheet-crawler-sp label, .sheet-crawler-tech-lvl label,
 .sheet-heat label, .sheet-sp label, .sheet-ep label,
 .sheet-hp label, .sheet-ap label, .sheet-tp label {
     color: white;
 }
 
+.sheet-crawler-upgrade label, .sheet-crawler-upkeep label,
+.sheet-crawler-upgrade input, .sheet-crawler-upkeep input,
 .sheet-crawler-sp label, .sheet-crawler-tech-lvl label,
 .sheet-crawler-sp input, .sheet-crawler-tech-lvl input,
 .sheet-heat label, .sheet-sp label, .sheet-ep label,
@@ -901,4 +907,40 @@ div[data-groupname="repeating_systems"] > div.repitem {
 .crawler-bay-info input,
 .crawler-bay-info button {
     display: inline;
+}
+
+.sheet-crawler-upkeep span,
+.sheet-crawler-upgrade span,
+.sheet-crawler-tech-lvl span,
+.sheet-crawler-sp span {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.crawler-tech-level-hamlet,
+.crawler-tech-level-village,
+.crawler-tech-level-town,
+.crawler-tech-level-city,
+.crawler-tech-level-metropolis,
+.crawler-tech-level-megacity {
+    display: none;
+}
+
+.show-crawler-level-info[value="Hamlet"] ~ .crawler-tech-level-hamlet,
+.show-crawler-level-info[value="Village"] ~ .crawler-tech-level-village,
+.show-crawler-level-info[value="Town"] ~ .crawler-tech-level-town,
+.show-crawler-level-info[value="City"] ~ .crawler-tech-level-city,
+.show-crawler-level-info[value="Metropolis"] ~ .crawler-tech-level-metropolis,
+.show-crawler-level-info[value="Megacity"] ~ .crawler-tech-level-megacity {
+    display: block;
+}   
+
+.crawler-tech-level-info > div > span {
+    display: block;
+    font-size: 16px;
+}
+
+.crawler-tech-level-info {
+    margin-bottom: 16px;
 }
