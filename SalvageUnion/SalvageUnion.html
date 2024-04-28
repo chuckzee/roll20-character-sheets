@@ -544,9 +544,10 @@
     </div>
 </div>
 <div class="denizen-sheet-wrapper">
+    <input type="hidden" class="sheet-denizentabstoggle" name="attr_denizenSheetTab" value="denizen">
     <div class="denizen-sheet-tabs-wrapper">
-        <button type="action" name="act_denizen">Denizen</button>
-        <button type="action" name="act_denizen_mech">Mech/Weapons</button>
+        <button class="denizenTab" type="action" name="act_denizen">Denizen</button>
+        <button class="denizenMechTab" type="action" name="act_denizenMech">Mech/Weapons</button>
     </div>
     <div class="sheet-denizen sheet-stats">
         
@@ -744,6 +745,15 @@
         on(`clicked:${button}`, function() {
             setAttrs({
                 sheetTab: button
+            });
+        });
+    });
+    
+    const denizenButtonlist = ["denizen", "denizenMech"];
+    denizenButtonlist.forEach(button => {
+        on(`clicked:${button}`, function() {
+            setAttrs({
+                denizenSheetTab: button
             });
         });
     });

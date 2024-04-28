@@ -999,3 +999,11 @@ div[data-groupname="repeating_systems"] > div.repitem {
     margin-right: 0px;
     margin-left: 0px;
 }
+
+
+.sheet-denizentabstoggle[value="denizenMech"] ~ .denizen-sheet-tabs-wrapper > button.denizenMechTab,
+.sheet-denizentabstoggle[value="denizen"] ~ .denizen-sheet-tabs-wrapper > button.denizenTab {
+    background-color: #31506A;
+    color: white;
+    -webkit-text-stroke-width: 1px;
+}
