@@ -16,7 +16,7 @@
     <button type="action" name="act_area_salvage">Area Salvage Roll</button>
     <button type="action" name="act_mech_salvage">Mech Salvage Roll</button>
 </div>
-<input type="hidden" class="character-sheet-type-toggle" name="attr_character_type_toggle"/>
+<input type="hidden" class="character-sheet-type-toggle" name="attr_character_type_toggle" value="pilot"/>
 <div class="pilot-mech-sheet-wrapper">
     <input type="hidden" name="attr_class" value="salvager" />
     <input type="hidden" name="attr_hp" value="10" />
@@ -392,7 +392,6 @@
 <div class="crawler-sheet-wrapper">
     <div class="cargo-sheet-tabs-wrapper">
         <button type="action" name="act_crawler">Crawler</button>
-        <button type="action" name="act_storage">Storage</button>
     </div>
     <div class="sheet-crawler sheet-stats">
         <!-- Health Points (HP) -->
@@ -500,6 +499,31 @@
                     <textarea name="attr_crawler_appearance" id="crawler_appearance"></textarea>
                 </div>
             </div>
+            <div class="sheet-crawler-storage">
+                <h3>Crawler Storage</h3>
+                <fieldset class="repeating_crawler_storage">
+                    <div class="sheet-inventory">
+                        <span class="inventory-item">
+                            <div>
+                                <label data-label-tooltip="The name of the item in your pilot's inventory." for="inventoryName">Name:</label>
+                                <input id="inventoryName" type="text" name="attr_inventory_name" placeholder="Name"/>
+                            </div>
+                            <div>
+                                <label data-label-tooltip="Tags of you equipment that are handy for quick reference, such as type fo action or number of uses." for="tagsOfInventory">TAGS:</label>
+                                <input id="tagsOfInventory" type="text" name="attr_inventory_tags" placeholder="Action Type, Range, # of Uses" />
+                            </div>
+                            <div>
+                                <label data-label-tooltip="The quantity of the item in your pilot's inventory. Optional!" for="numberInInventory">Count:</label>
+                                <input id="numberInInventory" type="number" name="attr_inventory_count" placeholder="#" min="0"/>
+                            </div>
+                        </span>
+                        <div>
+                            <label data-label-tooltip="The description of the item in your pilot's inventory. Include details you'll need to remember later." for="inventoryItemDescription">Description:</label>
+                            <textarea id="inventoryItemDescription" name="attr_inventory_description" placeholder="Description"></textarea>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
         </div>
         <div class="sheet-column-right">
             <div class="sheet-crawler-bays">
@@ -508,7 +532,6 @@
                     <div class="crawler-bay-info">
                         <label data-label-tooltip="The name of the Crawler Bay." for="crawler_bay_name">Name:</label>
                         <input type="text" name="attr_crawler_bay_name" id="crawler_bay_name" />    
-                        <button class="show-crawler-bay-button" type="action" name="act_show-crawler-bay">&#x1F4AC;</button>
                     </div>
                     <div class="crawler-bay-description">
                         <label data-label-tooltip="The appearance of your Union Crawler." for="crawler_appearance">Appearance:</label>
@@ -521,7 +544,73 @@
     </div>
 </div>
 <div class="denizen-sheet-wrapper">
+    <div class="denizen-sheet-tabs-wrapper">
+        <button type="action" name="act_denizen">Denizen</button>
+        <button type="action" name="act_denizen_mech">Mech/Weapons</button>
+    </div>
+    <div class="sheet-denizen sheet-stats">
+        
+        <div class="sheet-denizen-hp">
+            <span>
+                <label data-label-tooltip="HP or Hit Points are an abstract measure of how resilient the Denizen is." for="health">HP</label>
+                <input type="number" name="attr_health" id="health" value="10">
+            </span>
+            /
+            <span>
+                <label data-label-tooltip="Your Denizen's maximum HP." for="health_max">Max:</label>
+                <input type="number" name="attr_health_max" id="health_max" value="10">
+            </span>
+        </div>
 
+        
+        <div class="sheet-denizen-sp">
+            <span>
+                <label data-label-tooltip="" for="denizenstructure">SP</label>
+                <input type="number" name="attr_structure" id="denizenstructure" value="10">
+            </span>
+            /
+            <span>
+                <label data-label-tooltip="" for="structure_max">Max:</label>
+                <input type="number" name="attr_structure_max" id="structure_max" value="10">
+            </span>
+        </div>
+    </div>
+    <div class="sheet-denizen">
+        <div class="sheet-column-left">
+            <div class="sheet-denizen-meta">
+                <div class="descValuePair">
+                    <label for="denizenname">Name</label>
+                    <input id="denizenname" type="text" name="attr_character_name">
+                </div>
+    
+                <div class="descValuePair">
+                    <label for="denzientechlevel">Tech Level</label>
+                    <input id="denzientechlevel" type="text" name="attr_techlevel">
+                </div>
+                <div class="descValuePair">
+                    <label for="denizenscrap">Scrap</label>
+                    <input id="denizenscrap" type="number" name="attr_scrapvalue">
+                </div>
+                <textarea name="attr_typeDetails"></textarea>
+            </div>
+            <div class="notes">
+                <h3>Notes</h3>
+                <fieldset class="repeating_notes">
+                    <input type="text" name="attr_name" title="Name of the Note">
+                    <textarea name="attr_details"></textarea>
+                </fieldset>
+            </div>
+        </div>
+        <div class="sheet-column-right">
+            <div class="sheet-denizen-traits">
+                <h3>Traits</h3>
+                <fieldset class="repeating_traits">
+                    <input type="text" name="attr_name" class="fullsize" title="Name of the Trait">
+                    <textarea name="attr_details"></textarea>
+                </fieldset>
+            </div>
+        </div>
+    </div>
 </div>
 
 <!-- Roll Templates -->
@@ -923,6 +1012,32 @@
                 const inventoryCount = values[`repeating_inventory_${rowId}_inventory_count`] || 'N/A';
                 const inventoryDescription = values[`repeating_inventory_${rowId}_inventory_description`] || 'N/A';
                 const inventoryTags = values[`repeating_inventory_${rowId}_inventory_tags`] || 'N/A';
+                const rollExpression = `&{template:salvageunion-inventory} {{name=${inventoryName}}} {{Tags=${inventoryTags}}} {{InventoryCount=${inventoryCount}}} {{Description=${inventoryDescription}}}`;
+                
+                startRoll(rollExpression, function(rollResults) {
+                    finishRoll(rollResults.rollId, {});
+                });
+            });
+        }
+    });
+
+    on("clicked:repeating_crawler_storage:show-inventory", function(eventInfo) {
+        const rowIdMatch = eventInfo.sourceAttribute.match(/repeating_crawler_storage_(-[^_]+)_show-inventory/);
+        if (rowIdMatch) {
+            const rowId = rowIdMatch[1];
+            const attributesToGet = [
+                `repeating_crawler_storage_${rowId}_inventory_name`,
+                `repeating_crawler_storage_${rowId}_inventory_count`,
+                `repeating_crawler_storage_${rowId}_inventory_description`,
+                `repeating_crawler_storage_${rowId}_inventory_tags`
+            ];
+
+            getAttrs(attributesToGet, function(values) {
+                console.log(values);
+                const inventoryName = values[`repeating_crawler_storage_${rowId}_inventory_name`] || 'N/A';
+                const inventoryCount = values[`repeating_crawler_storage_${rowId}_inventory_count`] || 'N/A';
+                const inventoryDescription = values[`repeating_crawler_storage_${rowId}_inventory_description`] || 'N/A';
+                const inventoryTags = values[`repeating_crawler_storage_${rowId}_inventory_tags`] || 'N/A';
                 const rollExpression = `&{template:salvageunion-inventory} {{name=${inventoryName}}} {{Tags=${inventoryTags}}} {{InventoryCount=${inventoryCount}}} {{Description=${inventoryDescription}}}`;
                 
                 startRoll(rollExpression, function(rollResults) {

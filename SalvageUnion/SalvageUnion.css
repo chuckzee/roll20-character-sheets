@@ -129,6 +129,11 @@ h3 {
     margin-left: 0px;
 }
 
+.cargo-sheet-tabs-wrapper > button {
+    background-color:#CE5898;
+    color: black;
+}
+
 .sheet-tabs-wrapper button:nth-child(1) {
     background-color: rgb(245, 245, 245);
     color: #444;
@@ -188,6 +193,7 @@ input[value="cargo"] ~ div.sheet-stats {
     position: relative;
 }
 
+.sheet-denizen-hp, .sheet-denizen-sp,
 .sheet-crawler-upkeep, .sheet-crawler-upgrade,
 .sheet-crawler-sp, .sheet-crawler-tech-lvl,
 .sheet-hp, .sheet-ap, .sheet-tp, .sheet-heat, .sheet-sp, .sheet-ep {
@@ -209,6 +215,7 @@ input[value="cargo"] ~ div.sheet-stats {
     margin-bottom: -6px;
 }
 
+.sheet-denizen-hp label, .sheet-denizen-sp label,
 .sheet-crawler-upgrade label, .sheet-crawler-upkeep label,
 .sheet-crawler-sp label, .sheet-crawler-tech-lvl label,
 .sheet-heat label, .sheet-sp label, .sheet-ep label,
@@ -220,8 +227,10 @@ input[value="cargo"] ~ div.sheet-stats {
 .sheet-crawler-upgrade input, .sheet-crawler-upkeep input,
 .sheet-crawler-sp label, .sheet-crawler-tech-lvl label,
 .sheet-crawler-sp input, .sheet-crawler-tech-lvl input,
+.sheet-denizen-hp label, .sheet-denizen-sp label,
 .sheet-heat label, .sheet-sp label, .sheet-ep label,
 .sheet-hp label, .sheet-ap label, .sheet-tp label,
+.sheet-denizen-hp input, .sheet-denizen-sp input,
 .sheet-heat input, .sheet-sp input, .sheet-ep input,
 .sheet-hp input, .sheet-ap input, .sheet-tp input {
     margin-bottom: 0px;
@@ -485,7 +494,8 @@ input#cargo_over[value="1"] ~ span {
 }
 
 /* HP Bar */
-
+.sheet-denizen-sp > span,
+.sheet-denizen-hp > span,
 .sheet-sp > span,
 .sheet-ep > span,
 .sheet-heat > span,
@@ -499,6 +509,8 @@ input#cargo_over[value="1"] ~ span {
     position: relative;
 }
 
+.sheet-denizen-sp span:nth-child(1),
+.sheet-denizen-hp span:nth-child(1),
 .sheet-sp span:nth-child(1),
 .sheet-ep span:nth-child(1),
 .sheet-heat span:nth-child(1),
@@ -507,6 +519,8 @@ input#cargo_over[value="1"] ~ span {
     padding-right: 8px;
 }
 
+.sheet-denizen-sp span:nth-child(2),
+.sheet-denizen-hp span:nth-child(2),
 .sheet-sp span:nth-child(2),
 .sheet-ep span:nth-child(2),
 .sheet-heat span:nth-child(2),
@@ -950,4 +964,38 @@ div[data-groupname="repeating_systems"] > div.repitem {
 
 .crawler-tech-level-info {
     margin-bottom: 16px;
+}
+
+/* Denizens */
+
+.sheet-denizen {
+    display: flex;
+    padding: 8px;
+    background-color: #31506A;
+}
+
+.sheet-denizen.sheet-stats {
+    background-color: #31506A;
+}
+
+.ui-dialog .charsheet .descValuePair > input[type="number"] {
+    width: 5.5em;
+}
+
+.descValuePair {
+    margin-bottom: 8px;
+}
+
+.denizen-sheet-tabs-wrapper button {
+    font-size: 20px;
+    -webkit-text-stroke-width: 2px;
+    font-weight: normal;
+    line-height: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0px;
+    font-family: "Spline Sans Mono", monospace;
+    padding: 8px 12px;
+    border: 0px solid;
+    margin-right: 0px;
+    margin-left: 0px;
 }
