@@ -576,7 +576,7 @@
             </span>
         </div>
     </div>
-    <div class="sheet-denizen">
+    <div class="sheet-denizen primary-denizen-sheet">
         <div class="sheet-column-left">
             <div class="sheet-denizen-meta">
                 <div class="descValuePair">
@@ -610,6 +610,14 @@
                     <textarea name="attr_details"></textarea>
                 </fieldset>
             </div>
+        </div>
+    </div>
+    <div class="sheet-denizenMech">
+        <div class="sheet-column-left">
+            left
+        </div>
+        <div class="sheet-column-right">
+            right
         </div>
     </div>
 </div>
@@ -754,6 +762,16 @@
         on(`clicked:${button}`, function() {
             setAttrs({
                 denizenSheetTab: button
+            });
+        });
+    });
+
+    // Initial visibility setup
+    on('sheet:opened', function() {
+        getAttrs(['denizenSheetTab'], function(values) {
+            const activeTab = values.denizenSheetTab || 'denizen';
+            setAttrs({
+                denizenSheetTab: activeTab
             });
         });
     });

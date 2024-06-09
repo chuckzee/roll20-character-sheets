@@ -969,7 +969,6 @@ div[data-groupname="repeating_systems"] > div.repitem {
 /* Denizens */
 
 .sheet-denizen {
-    display: flex;
     padding: 8px;
     background-color: #31506A;
 }
@@ -1006,4 +1005,20 @@ div[data-groupname="repeating_systems"] > div.repitem {
     background-color: #31506A;
     color: white;
     -webkit-text-stroke-width: 1px;
+}
+
+.denizen-sheet-wrapper .sheet-denizenMech {
+    display: none;
+}
+
+.denizen-sheet-wrapper [name="attr_denizenSheetTab"][value="denizenMech"] ~ .sheet-denizenMech {
+    display: flex;
+}
+
+.denizen-sheet-wrapper .primary-denizen-sheet {
+    display: none;
+}
+
+.denizen-sheet-wrapper [name="attr_denizenSheetTab"][value="denizen"] ~ .primary-denizen-sheet {
+    display: flex;
 }
