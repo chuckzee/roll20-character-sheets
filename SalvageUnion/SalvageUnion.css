@@ -968,6 +968,7 @@ div[data-groupname="repeating_systems"] > div.repitem {
 
 /* Denizens */
 
+.sheet-denizenMech,
 .sheet-denizen {
     padding: 8px;
     background-color: #31506A;
